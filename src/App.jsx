@@ -33,10 +33,15 @@ function App(){
     setwatchlist(newwatchlist)
     console.log(newwatchlist)
   }
+   console.log("API KEY:", import.meta.env.VITE_TMDB_KEY)
   let[banner,setbanner]=useState({})
   useEffect(()=>{
+  
     if (watchlists.length === 0) {
-    setbanner("");
+    setbanner({
+  poster_path: "/aLVkiINlIeCkcZIzb7XHzPYgO6L.jpg",
+  original_title: "Moana 2"
+})
     return;
   } 
      let postercard=watchlists.reduce((prev,current)=>{
@@ -68,7 +73,7 @@ function App(){
     
   return (
     <div>
-    <BrowserRouter>
+    <BrowserRouter basename="/react-Clone">
       <Navbar tomode={handlemode}/>
         <Routes>
          <Route path='/' element={<><Banner bannerimg={banner}/><Movies fun={handleclick} remove={handleremove} data={watchlists}/></>}/>
